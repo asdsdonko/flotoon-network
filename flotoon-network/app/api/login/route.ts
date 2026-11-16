@@ -1,0 +1,3 @@
+import {NextResponse} from 'next/server';
+import {serverDb} from '../../../lib/supabase';
+export async function POST(req:Request){try{const {email,password}=await req.json();if(typeof email!=='string'||typeof password!=='string')return NextResponse.json({error:'Invalid credentials'},{status:400});const {data,error}=await serverDb().auth.signInWithPassword({email,password});if(error||!data.session)return NextResponse.json({error:'Incorrect email or password'},{status:401});const res=NextResponse.json({ok:true});res.cookies.set('flotoon_session',data.session.access_token,{httpOnly:true,secure:process.env.NODE_ENV==='production',sameSite:'lax',path:'/',maxAge:data.session.expires_in});return res}catch{return NextResponse.json({error:'Unable to sign in'},{status:500})}}

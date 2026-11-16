@@ -1,0 +1,3 @@
+import Header from '../components/Header';import Logo from '../components/Logo';import Calendar from '../components/Calendar';import Cast from '../components/Cast';import {getContent} from '../lib/data';
+export const dynamic='force-dynamic';
+export default async function Home(){const data=await getContent();return <><Header slackUrl={data.slackUrl}/><main className="main"><Logo/><Calendar events={data.events}/><Cast ras={data.ras}/></main><div className="corner pink"/><div className="corner bottom-blue"/><footer><div className="checker"/><p>FLOTOON NETWORK © {new Date().getFullYear()} <span>STAY TOONED!</span></p></footer></>}

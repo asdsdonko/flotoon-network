@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function Header({slackUrl}:{slackUrl?:string}){return <><header className="site-header"><Link href="/" className="mini-logo" aria-label="FloToon home"><span>F</span><span>N</span></Link><nav><Link href="/">HOME</Link><Link href="/events">EVENTS</Link><Link href="/photos">PHOTOS</Link>{slackUrl?<a href={slackUrl} target="_blank" rel="noopener noreferrer">SLACK ↗</a>:<a href="/admin">SLACK ↗</a>}</nav></header><div className="checker"/></>}
