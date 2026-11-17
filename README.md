@@ -45,3 +45,13 @@ Open http://localhost:3000 for the website and http://localhost:3000/admin for t
 - Images are limited to 8 MB each. Deleting an album/profile doesn't automatically remove its previously uploaded image from storage.
 - The public website displays placeholder RA cards until updated. The site works in preview mode without Supabase configured, but editing and persistence require Supabase.
 - `npm run build` should be run after installing dependencies. This package was prepared as source code, not deployed to your Vercel account.
+
+
+## Event requests + RA approval (new)
+1. In Supabase SQL Editor, run **the contents** of `event-requests-setup.sql` (not the filename). This creates the private request table and the atomic approval function.
+2. No new environment variables are needed. Keep `SUPABASE_SERVICE_ROLE_KEY` server-side only.
+3. Residents can click **REQUEST AN EVENT** below the homepage calendar. Submitted requests remain private and pending.
+4. Log in to `/admin` with the shared RA credentials and open **REQUESTS**. Approve to publish the event to the public calendar, or reject.
+5. Requests are stored in Supabase; the request form does **not** send emails. Email notifications can be added later with a mail provider.
+6. Public request submission is open to anyone. Before widely sharing the site, consider adding CAPTCHA or server-side rate limiting to prevent spam. Requests cannot be published without admin authentication.
+7. The example request (Alice / heu / 2026-11-04 / eubirw) is **not** inserted automatically; submit it via the form if you want it saved. The date is in the past.
